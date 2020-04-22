@@ -24,7 +24,7 @@ export class UserController {
 
     @Post('create')
     async createUser(@Body() user: User) {
-        if (!user || !user.name || !user.email || !user.password)
+        if (!user || !user.name || !user.password)
             return ReqError('Bad Request')
         return await this.userService.register(user)
     }
