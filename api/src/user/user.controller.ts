@@ -1,4 +1,12 @@
-import { Controller, Post, Body, Get, UseGuards, Request } from '@nestjs/common'
+import {
+    Controller,
+    Post,
+    Body,
+    Get,
+    UseGuards,
+    Request,
+    Query,
+} from '@nestjs/common'
 import { UserService } from './user.service'
 import { User } from './user.model'
 import { ReqError, Response } from '../helper'
@@ -14,12 +22,6 @@ export class UserController {
         return Response('Success', req.user)
     }
 
-    @UseGuards(AuthGuard('jwt'))
-    @Get('mytask')
-    mytask(@Request() req: any) {
-        return this.userService.mytask(req.user.username)
-    }
-
     @Post('create')
     async createUser(@Body() user: User) {
         if (!user || !user.name || !user.email || !user.password)
@@ -30,6 +32,12 @@ export class UserController {
     @Get('all')
     async findAll() {
         return await this.userService.findAll()
+    }
+
+    @Get('find')
+    async find(@Query('name') name: string) {
+        if (!name) return ReqError('Pls specify name of user')
+        return await this.userService.findUserByName(name)
     }
 
     @UseGuards(AuthGuard('local'))

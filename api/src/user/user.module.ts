@@ -4,10 +4,10 @@ import { UserController } from './user.controller'
 import { MongooseModule } from '@nestjs/mongoose'
 import { UserSchema } from './user.model'
 import { JwtModule } from '@nestjs/jwt'
-import '../env'
 import { LocalStrategy } from './local.strategy'
 import { JwtStrategy } from './jwt.strategy'
 import { AdminGuard } from './Guard'
+import '../env'
 
 @Module({
     imports: [
