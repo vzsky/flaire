@@ -1,6 +1,7 @@
-import React from "react"
-import { Box, Heading, Flex, Text, Link } from "@chakra-ui/core"
-import { Prop } from "../helper"
+import React, { useState, useEffect } from "react"
+import { Box, Heading, Flex, Text, Link, Button } from "@chakra-ui/core"
+import { getUser, useLocalStorage } from "../helper"
+import { createPublicKey } from "crypto"
 
 const MenuItems = ({ children }) => (
 	<Text mt={{ base: 4, md: 0 }} mr={6} display="block">
@@ -25,9 +26,16 @@ const ActiveNav = ({ href, name }) => (
 const links = [
 	{ href: "/", name: "home" },
 	{ href: "/login", name: "login" },
+	{ href: "/profile", name: "profile" },
 ]
 
-const Header = (props: Prop) => {
+const RightButton = () => (
+	<Button bg="transparent" border="1px">
+		Do something
+	</Button>
+)
+
+const Header = ({ active }) => {
 	const [show, setShow] = React.useState(false)
 	const toggleShow = () => setShow(!show)
 
@@ -66,7 +74,7 @@ const Header = (props: Prop) => {
 				flexGrow={1}
 			>
 				{links.map((val) => {
-					if (val.name == props.active)
+					if (val.name == active)
 						return (
 							<ActiveNav
 								key={val.name}
@@ -78,6 +86,12 @@ const Header = (props: Prop) => {
 						<Nav key={val.name} href={val.href} name={val.name} />
 					)
 				})}
+			</Box>
+			<Box
+				display={{ base: show ? "block" : "none", md: "block" }}
+				mt={{ base: 4, md: 0 }}
+			>
+				<RightButton />
 			</Box>
 		</Flex>
 	)

@@ -57,7 +57,8 @@ export class UserService {
 
     async register(user: User): Promise<UserDoc | ResponseType> {
         let exist = await this.findUserByName(user.name)
-        if (this.isUserType(exist)) return ReqError('This Name is Used')
+        if (this.isUserType(exist))
+            return Response('Failed', 'This Name is Used')
         user.role = 0
         return await this.createUser(user)
     }
@@ -71,9 +72,9 @@ export class UserService {
 
     async login(name: string, password: string): Promise<ResponseType> {
         let user = await this.findUserByName(name)
-        if (this.isResponseType(user)) return ReqError('No Such User')
+        if (this.isResponseType(user)) return Response('Failed', 'No Such User')
         let valid = await compare(password, user.password)
-        if (!valid) return ReqError('Wrong Password')
+        if (!valid) return Response('Failed', 'Wrong Password')
         let token = await this.getToken(user)
         return Response('Success', token)
     }
