@@ -1,4 +1,5 @@
-const apiurl = "http://localhost:3000/"
+// const apiurl = "http://localhost:3000/"
+const apiurl = "http://192.168.1.44:3000/"
 
 export const postData = async (url = "", data = {}, headers = {}) => {
 	let res = await fetch(apiurl + url, {

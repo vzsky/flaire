@@ -9,6 +9,10 @@
 		"export": "cross-env NEXT_EXPORT=true next build && cross-env NEXT_EXPORT=true next export"
 	},
 	"dependencies": {
+		"@chakra-ui/core": "^0.7.0",
+		"@emotion/core": "^10.0.28",
+		"@emotion/styled": "^10.0.27",
+		"emotion-theming": "^10.0.27",
 		"next": "canary",
 		"next-offline": "4.0.6",
 		"react": "16.12.0",
@@ -20,5 +24,5 @@
 		"@types/react": "^16.9.34",
 		"cross-env": "6.0.3",
 		"typescript": "^3.8.3"
-    }
+	}
 }

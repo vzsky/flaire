@@ -4,15 +4,21 @@ import { Flex, Text, Box } from "@chakra-ui/core"
 import Nav from "../components/nav"
 
 export default () => {
-	const { data, error } = useSWR(["user/all"], getData)
-	console.log(data)
-
 	return (
-		<Box width="100%" height="100%" bg="blue.100" overflow="hidden">
-			<Nav active="home" />
+		<Box
+			width="100%"
+			height="100%"
+			bg="blue.100"
+			overflow="hidden"
+			alignItems="center"
+		>
+			<Nav active="login" />
 			<Flex width="100%" justify="center">
 				<Box>
-					<Text fontSize="3xl">welcome to home page</Text>
+					<Text width="auto" fontSize="3xl">
+						login page
+					</Text>
+					<Text>login form here</Text>
 				</Box>
 			</Flex>
 		</Box>
