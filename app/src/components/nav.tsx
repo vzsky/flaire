@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { Box, Heading, Flex, Text, Link, Button } from "@chakra-ui/core"
-import { getUser, useLocalStorage } from "../helper"
-import { createPublicKey } from "crypto"
 
 const MenuItems = ({ children }) => (
 	<Text mt={{ base: 4, md: 0 }} mr={6} display="block">
@@ -74,7 +72,7 @@ const Header = ({ active }) => {
 				flexGrow={1}
 			>
 				{links.map((val) => {
-					if (val.name == active)
+					if (val.name === active)
 						return (
 							<ActiveNav
 								key={val.name}

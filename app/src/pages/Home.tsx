@@ -4,8 +4,8 @@ import Layout from "../components/Layout"
 
 function App() {
 	return (
-		<Layout at="profile">
-			<Text fontSize="3xl">welcome to profile page</Text>
+		<Layout at="home">
+			<Text fontSize="3xl">welcome to home page</Text>
 		</Layout>
 	)
 }

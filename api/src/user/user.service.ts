@@ -59,7 +59,7 @@ export class UserService {
         let exist = await this.findUserByName(user.name)
         if (this.isUserType(exist))
             return Response('Failed', 'This Name is Used')
-        user.role = 0
+        user.role = 1
         return await this.createUser(user)
     }
 
