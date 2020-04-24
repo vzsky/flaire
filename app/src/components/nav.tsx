@@ -2,23 +2,29 @@ import React from "react"
 import { Box, Heading, Flex, Text, Link, Button } from "@chakra-ui/core"
 
 const MenuItems = ({ children }) => (
-	<Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+	<Text alignSelf="center" mr={6} display="block">
 		{children}
 	</Text>
 )
 
 const Nav = ({ href, name }) => (
-	<MenuItems>
-		<Link href={href}>{name}</Link>
-	</MenuItems>
+	<Flex>
+		<MenuItems>
+			<Link color="gray.100" _hover={{}} href={href}>
+				{name}
+			</Link>
+		</MenuItems>
+	</Flex>
 )
 
 const ActiveNav = ({ href, name }) => (
-	<MenuItems>
-		<Link href={href}>
-			<b> {name} </b>
-		</Link>
-	</MenuItems>
+	<Flex>
+		<MenuItems>
+			<Link color="gray.100" _hover={{}} href={href}>
+				<b>{name}</b>
+			</Link>
+		</MenuItems>
+	</Flex>
 )
 
 const links = [
@@ -43,7 +49,8 @@ const Header = ({ active }) => {
 			align="center"
 			justify="space-between"
 			wrap="wrap"
-			padding="1.5rem"
+			paddingLeft="1.5rem"
+			paddingRight="1.5rem"
 			bg="teal.500"
 			color="white"
 		>
@@ -88,6 +95,7 @@ const Header = ({ active }) => {
 			<Box
 				display={{ base: show ? "block" : "none", md: "block" }}
 				mt={{ base: 4, md: 0 }}
+				mb={{ base: 4, md: 0 }}
 			>
 				<RightButton />
 			</Box>
