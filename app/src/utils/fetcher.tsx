@@ -1,6 +1,6 @@
 import { useLocalStorage } from "./helper"
 
-// const apiurl = "http://localhost:3000/"
+// const apiurl = "https://kvisoi.club/flaire/"
 const apiurl = "http://192.168.1.44:3000/"
 
 export const postData = async ({
