@@ -34,8 +34,10 @@ export class UserController {
         return await this.userService.findAll()
     }
 
-    @Get('find')
-    async find(@Query('name') name: string) {
+    @UseGuards(AuthGuard('jwt'))
+    @Get('info')
+    async find(@Request() req: any) {
+        let name = req.user.username
         if (!name) return ReqError('Pls specify name of user')
         return await this.userService.findUserByName(name)
     }
