@@ -1,6 +1,7 @@
-const apiurl = process.env.PRODUCTION
-	? "https://kvisoi.club/flaire/"
-	: "http://192.168.1.44:3000/flaire/"
+const apiurl =
+	process.env.NODE_ENV === "production"
+		? "https://kvisoi.club/flaire/"
+		: "http://192.168.1.44:3000/flaire/"
 
 export const postData = async ({
 	url = "",
