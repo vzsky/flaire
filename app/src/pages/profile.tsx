@@ -1,6 +1,6 @@
 import { Text } from "@chakra-ui/core"
 import Layout from "../components/layout"
-import { useUser } from "../helper"
+import { useUser } from "../utils/helper"
 
 export default () => {
 	const user = useUser({ redirectTo: "/login" })

@@ -1,4 +1,4 @@
-import { postData } from "../fetcher"
+import { postData } from "../utils/fetcher"
 import {
 	Flex,
 	Text,
@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/core"
 import Layout from "../components/layout"
 import { useState } from "react"
-import { useLocalStorage } from "../helper"
+import { useLocalStorage } from "../utils/helper"
 import { useRouter } from "next/router"
 
 const Form = () => {

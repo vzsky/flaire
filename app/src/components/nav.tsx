@@ -8,7 +8,8 @@ import {
 	Link as Clink,
 } from "@chakra-ui/core"
 import Link from "next/link"
-import { useUser } from "../helper"
+import { useUser, Logout } from "../utils/helper"
+import { useRouter } from "next/router"
 
 const links = [
 	{ href: "/", name: "home" },
@@ -28,12 +29,17 @@ const Nav = ({ href, name, isActive }) => (
 
 const RightButton = () => {
 	const user = useUser()
+	const router = useRouter()
+	const onClick = () => {
+		if (user) return Logout
+		return () => {
+			router.push("/login")
+		}
+	}
 	return (
-		<Link href={user ? "/logout" : "/login"}>
-			<Button bg="transparent" border="1px">
-				{user ? "logout" : "login"}
-			</Button>
-		</Link>
+		<Button bg="transparent" border="1px" onClick={onClick()}>
+			{user ? "logout" : "login"}
+		</Button>
 	)
 }
 
