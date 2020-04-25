@@ -1,7 +1,6 @@
-import { useLocalStorage } from "./helper"
-
-// const apiurl = "https://kvisoi.club/flaire/"
-const apiurl = "http://192.168.1.44:3000/"
+const apiurl = process.env.PRODUCTION
+	? "https://kvisoi.club/flaire/"
+	: "http://192.168.1.44:3000/flaire/"
 
 export const postData = async ({
 	url = "",
