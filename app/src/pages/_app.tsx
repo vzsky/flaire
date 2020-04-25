@@ -22,14 +22,12 @@ const Full = () => (
 export default ({ Component, pageProps }: AppProps) => {
 	return (
 		<ThemeProvider theme={theme}>
-			<ColorModeProvider>
-				<Head>
-					<title>my99n</title>
-				</Head>
-				<CSSReset />
-				<Component {...pageProps} />
-				<Full />
-			</ColorModeProvider>
+			<Head>
+				<title>my99n</title>
+			</Head>
+			<CSSReset />
+			<Component {...pageProps} />
+			<Full />
 		</ThemeProvider>
 	)
 }

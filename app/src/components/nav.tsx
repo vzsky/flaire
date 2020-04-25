@@ -1,39 +1,41 @@
-import React, { useState, useEffect } from "react"
-import { Box, Heading, Flex, Text, Link, Button } from "@chakra-ui/core"
-import { getUser, useLocalStorage } from "../helper"
-import { createPublicKey } from "crypto"
-
-const MenuItems = ({ children }) => (
-	<Text mt={{ base: 4, md: 0 }} mr={6} display="block">
-		{children}
-	</Text>
-)
-
-const Nav = ({ href, name }) => (
-	<MenuItems>
-		<Link href={href}>{name}</Link>
-	</MenuItems>
-)
-
-const ActiveNav = ({ href, name }) => (
-	<MenuItems>
-		<Link href={href}>
-			<b> {name} </b>
-		</Link>
-	</MenuItems>
-)
+import React from "react"
+import {
+	Box,
+	Heading,
+	Flex,
+	Text,
+	Button,
+	Link as Clink,
+} from "@chakra-ui/core"
+import Link from "next/link"
+import { useUser } from "../helper"
 
 const links = [
 	{ href: "/", name: "home" },
-	{ href: "/login", name: "login" },
 	{ href: "/profile", name: "profile" },
 ]
 
-const RightButton = () => (
-	<Button bg="transparent" border="1px">
-		Do something
-	</Button>
+const Nav = ({ href, name, isActive }) => (
+	<Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+		<Link href={href}>
+			<Clink>
+				{isActive && <b>{name}</b>}
+				{!isActive && <>{name}</>}
+			</Clink>
+		</Link>
+	</Text>
 )
+
+const RightButton = () => {
+	const user = useUser()
+	return (
+		<Link href={user ? "/logout" : "/login"}>
+			<Button bg="transparent" border="1px">
+				{user ? "logout" : "login"}
+			</Button>
+		</Link>
+	)
+}
 
 const Header = ({ active }) => {
 	const [show, setShow] = React.useState(false)
@@ -74,16 +76,13 @@ const Header = ({ active }) => {
 				flexGrow={1}
 			>
 				{links.map((val) => {
-					if (val.name == active)
-						return (
-							<ActiveNav
-								key={val.name}
-								href={val.href}
-								name={val.name}
-							/>
-						)
 					return (
-						<Nav key={val.name} href={val.href} name={val.name} />
+						<Nav
+							key={val.name}
+							href={val.href}
+							name={val.name}
+							isActive={val.name === active}
+						/>
 					)
 				})}
 			</Box>

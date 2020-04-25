@@ -1,21 +1,9 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { getData } from "./fetcher"
+import Router from "next/router"
+import useSWR from "swr"
+
 export type Prop = { [x: string]: any }
-
-export const getUser = async (token: string, set: any, setToken: any) => {
-	try {
-		let res = await getData({ url: "user", token })
-		if (res.status === "Success") set(res.msg)
-	} catch (e) {
-		console.log("Get User failed", e)
-		setToken(null)
-	}
-}
-
-export const Logout = () => {
-	window.localStorage.setItem("token", null)
-	window.location.replace("login")
-}
 
 export const useLocalStorage = (key: string, initialValue: string) => {
 	const [storedValue, setStoredValue] = useState(() => {
@@ -27,7 +15,7 @@ export const useLocalStorage = (key: string, initialValue: string) => {
 			return initialValue
 		}
 	})
-	const setValue = (value) => {
+	const setValue = (value: any) => {
 		try {
 			const valueToStore =
 				value instanceof Function ? value(storedValue) : value
@@ -38,4 +26,31 @@ export const useLocalStorage = (key: string, initialValue: string) => {
 		}
 	}
 	return [storedValue, setValue]
+}
+
+export const useUser = ({ redirectTo = null, redirectIfFound = null } = {}) => {
+	const [token] = useLocalStorage("token", null)
+	const { data, error } = useSWR("user", (url: string) => {
+		if (token !== undefined) return getData({ url, token })
+	})
+	const finished = Boolean(data)
+	const hasUser = Boolean(data?.status === "Success")
+	useEffect(() => {
+		if (!redirectTo || !finished) return
+		if (
+			// If redirectTo is set, redirect if the user was not found.
+			(redirectTo && !redirectIfFound && !hasUser) ||
+			// If redirectIfFound is also set, redirect if the user was found
+			(redirectIfFound && hasUser)
+		) {
+			Router.push(redirectTo)
+		}
+	}, [redirectTo, redirectIfFound, finished, hasUser])
+
+	const user = data?.msg
+	return error ? null : user
+}
+
+export const Logout = () => {
+	window.localStorage.setItem("token", null)
 }

@@ -9,25 +9,18 @@ export const postData = async ({
 	headers = {},
 	token = null,
 } = {}) => {
-	try {
-		let res = await fetch(apiurl + url, {
-			method: "POST",
-			cache: "no-cache",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: "Bearer " + token,
-				...headers,
-			},
-			body: JSON.stringify(data),
-		})
-		if (!res.ok) throw new Error("Response Failed")
-		const result = await res.json()
-		if (result.status && result.status === "Error")
-			throw new Error("Bad Request")
-		return result
-	} catch (e) {
-		throw e
-	}
+	let res = await fetch(apiurl + url, {
+		method: "POST",
+		cache: "no-cache",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: "Bearer " + token,
+			...headers,
+		},
+		body: JSON.stringify(data),
+	})
+	const result = await res.json()
+	return result
 }
 
 export const getData = async ({
@@ -35,22 +28,15 @@ export const getData = async ({
 	headers = {},
 	token = null,
 } = {}) => {
-	try {
-		let res = await fetch(apiurl + url, {
-			method: "GET",
-			cache: "no-cache",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: "Bearer " + token,
-				...headers,
-			},
-		})
-		if (!res.ok) throw new Error(res.statusText)
-		const result = await res.json()
-		if (result.status && result.status === "Error")
-			throw new Error("Bad Request")
-		return result
-	} catch (e) {
-		throw e
-	}
+	let res = await fetch(apiurl + url, {
+		method: "GET",
+		cache: "no-cache",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: "Bearer " + token,
+			...headers,
+		},
+	})
+	const result = await res.json()
+	return result
 }

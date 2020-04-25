@@ -9,11 +9,13 @@ import {
 	Input,
 	Button,
 } from "@chakra-ui/core"
-import Nav from "../components/nav"
+import Layout from "../components/layout"
 import { useState } from "react"
 import { useLocalStorage } from "../helper"
+import { useRouter } from "next/router"
 
-export default () => {
+const Form = () => {
+	const router = useRouter()
 	const [form, setForm] = useState({ username: "", password: "" })
 	const [error, setError] = useState({ username: "", password: "" })
 	const [token, setToken] = useLocalStorage("token", null)
@@ -43,9 +45,8 @@ export default () => {
 			if (res.status === "Success") {
 				setError({ username: "", password: "" })
 				setForm({ username: "", password: "" })
-				console.log(res)
 				setToken(res.msg)
-				window.location.replace("/")
+				router.push("/")
 				return
 			}
 		} catch (e) {
@@ -56,55 +57,44 @@ export default () => {
 	}
 
 	return (
-		<Box
-			width="100%"
-			height="100%"
-			bg="blue.100"
-			overflow="hidden"
-			alignItems="center"
-		>
-			<Nav active="login" />
-			<Flex width="100%" justify="center">
-				<Box>
-					<Text width="auto" fontSize="3xl">
-						login page
-					</Text>
-					<form onSubmit={onSubmit}>
-						<FormControl isInvalid={error.username ? true : false}>
-							<FormLabel htmlFor="username">Username</FormLabel>
-							<Input
-								name="username"
-								placeholder="username"
-								value={form.username}
-								onChange={(e: any) => {
-									onInputChange(e, "username")
-								}}
-							/>
-							<FormErrorMessage>
-								{error.username}
-							</FormErrorMessage>
-						</FormControl>
-						<FormControl isInvalid={error.password ? true : false}>
-							<FormLabel htmlFor="password">password</FormLabel>
-							<Input
-								type="password"
-								name="password"
-								placeholder="password"
-								value={form.password}
-								onChange={(e: any) => {
-									onInputChange(e, "password")
-								}}
-							/>
-							<FormErrorMessage>
-								{error.password}
-							</FormErrorMessage>
-						</FormControl>
-						<Button mt={4} variantColor="teal" type="submit">
-							Submit
-						</Button>
-					</form>
-				</Box>
-			</Flex>
-		</Box>
+		<form onSubmit={onSubmit}>
+			<FormControl isInvalid={error.username ? true : false}>
+				<FormLabel htmlFor="username">Username</FormLabel>
+				<Input
+					name="username"
+					placeholder="username"
+					value={form.username}
+					onChange={(e: any) => {
+						onInputChange(e, "username")
+					}}
+				/>
+				<FormErrorMessage>{error.username}</FormErrorMessage>
+			</FormControl>
+			<FormControl isInvalid={error.password ? true : false}>
+				<FormLabel htmlFor="password">password</FormLabel>
+				<Input
+					type="password"
+					name="password"
+					placeholder="password"
+					value={form.password}
+					onChange={(e: any) => {
+						onInputChange(e, "password")
+					}}
+				/>
+				<FormErrorMessage>{error.password}</FormErrorMessage>
+			</FormControl>
+			<Button mt={4} variantColor="teal" type="submit">
+				Submit
+			</Button>
+		</form>
 	)
 }
+
+export default () => (
+	<Layout at="login">
+		<Text width="auto" fontSize="3xl">
+			login page
+		</Text>
+		<Form />
+	</Layout>
+)
