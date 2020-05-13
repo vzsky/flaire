@@ -1,6 +1,6 @@
 const apiurl =
   process.env.NODE_ENV === 'production'
-    ? 'http://flaire-api.herokuapp.com/flaire/'
+    ? 'https://flaire-api.herokuapp.com/flaire/'
     : 'http://192.168.1.44:3000/flaire/'
 
 export const postData = async ({
