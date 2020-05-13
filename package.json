@@ -1,28 +1,28 @@
 {
-	"name": "flaire-app",
-	"version": "0.0.1",
-	"main": "index.js",
-	"scripts": {
-		"dev": "next -p 3001",
-		"build": "next build",
-		"start": "next start",
-		"export": "cross-env NEXT_EXPORT=true next build && cross-env NEXT_EXPORT=true next export"
-	},
-	"dependencies": {
-		"@chakra-ui/core": "^0.7.0",
-		"@emotion/core": "^10.0.28",
-		"@emotion/styled": "^10.0.27",
-		"emotion-theming": "^10.0.27",
-		"next": "^9.3.6-canary.11",
-		"next-offline": "4.0.6",
-		"react": "16.12.0",
-		"react-dom": "16.12.0",
-		"swr": "^0.2.0"
-	},
-	"devDependencies": {
-		"@types/node": "^13.13.2",
-		"@types/react": "^16.9.34",
-		"cross-env": "6.0.3",
-		"typescript": "^3.8.3"
-	}
+  "name": "flaire-app",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next -p 3001",
+    "build": "next build",
+    "start": "next start",
+    "export": "cross-env NEXT_EXPORT=true next build && cross-env NEXT_EXPORT=true next export"
+  },
+  "dependencies": {
+    "@chakra-ui/core": "^0.7.0",
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
+    "emotion-theming": "^10.0.27",
+    "next": "^9.3.6-canary.11",
+    "next-offline": "4.0.6",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "swr": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.13.2",
+    "@types/react": "^16.9.34",
+    "cross-env": "6.0.3",
+    "typescript": "^3.8.3"
+  }
 }

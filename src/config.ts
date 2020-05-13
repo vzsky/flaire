@@ -1,8 +1,8 @@
-import { theme as Chakratheme } from "@chakra-ui/core"
+import { theme as Chakratheme } from '@chakra-ui/core'
 
 export const theme = {
-	...Chakratheme,
-	colors: {
-		...Chakratheme.colors,
-	},
+  ...Chakratheme,
+  colors: {
+    ...Chakratheme.colors,
+  },
 }
