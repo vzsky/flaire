@@ -1,17 +1,17 @@
 {
-	"name": "next-offline",
-	"short_name": "next-offline",
-	"description": "Nextjs using service worker via next-offline",
-	"icons": [
-		{
-			"src": "/static/pwa.png",
-			"sizes": "192x192",
-			"type": "image/png"
-		}
-	],
-	"theme_color": "#ffffff",
-	"background_color": "#ffffff",
-	"start_url": "/",
-	"display": "standalone",
-	"offline_enabled": true
+  "name": "flaire",
+  "short_name": "flaire",
+  "description": "just a simple pwa",
+  "lang": "en",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#49a3c9",
+  "icons": [
+    {
+      "src": "/static/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "offline_enabled": true
 }

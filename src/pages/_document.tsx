@@ -10,14 +10,27 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="shortcut icon" href="/assets/favicon.png" />
+          <meta name="mobile-web-app-capable" content="yes" />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta name="application-name" content="flaire" />
+          <meta name="apple-mobile-web-app-title" content="flaire" />
+          <meta name="theme-color" content="#49a3c9" />
+          <meta name="msapplication-navbutton-color" content="#49a3c9" />
+          <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+          />
+          <meta name="msapplication-starturl" content="/" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
+          <link rel="icon" href="/static/logo.png" />
+          <link rel="apple-touch-icon" href="/static/logo.png" />
+          <link rel="shortcut icon" href="/assets/logo.png" />
           <link
             href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
             rel="stylesheet"
-          />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes"
           />
           <meta name="description" content="flaire" />
           <link rel="manifest" href="/manifest.json" />
