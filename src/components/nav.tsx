@@ -27,24 +27,18 @@ const Nav = ({ href, name, isActive }) => (
   </Text>
 )
 
-const RightButton = () => {
-  const user = useUser()
+const onClick = (user: any, toggleShow: any) => {
   const router = useRouter()
-  const onClick = () => {
-    if (user) return Logout
-    return () => {
-      router.push('/login')
-    }
+  if (user) return Logout
+  return () => {
+    router.push('/login')
+    toggleShow()
   }
-  return (
-    <Button bg="transparent" border="1px" onClick={onClick()}>
-      {user ? 'logout' : 'login'}
-    </Button>
-  )
 }
 
 const Header = ({ active }) => {
   const [show, setShow] = React.useState(false)
+  const user = useUser()
   const toggleShow = () => setShow(!show)
 
   return (
@@ -96,7 +90,9 @@ const Header = ({ active }) => {
         display={{ base: show ? 'block' : 'none', md: 'block' }}
         mt={{ base: 4, md: 0 }}
       >
-        <RightButton />
+        <button onClick={onClick(user, toggleShow)}>
+          {user ? 'logout' : 'login'}
+        </button>
       </Box>
     </Flex>
   )
