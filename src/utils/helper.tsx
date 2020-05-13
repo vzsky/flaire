@@ -53,4 +53,5 @@ export const useUser = ({ redirectTo = null, redirectIfFound = null } = {}) => {
 
 export const Logout = () => {
   window.localStorage.setItem('token', null)
+  window.location.replace('/')
 }
