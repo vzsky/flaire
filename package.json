@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "dev": "next -p 3001",
+    "start:debug": "next -p 3001",
     "build": "next build",
     "start": "next start",
     "export": "cross-env NEXT_EXPORT=true next build && cross-env NEXT_EXPORT=true next export"
